@@ -1,19 +1,16 @@
 {
 	"name": "pi-ext",
 	"version": "0.1.0",
-	"dependencies": {
-		"js-yaml": "^5.2.2",
-		"@benvargas/pi-claude-code-use": "^1.0.1",
-		"@earendil-works/pi-coding-agent": "^0.82.0",
-		"@mariozechner/pi-agent-core": "npm:@earendil-works/pi-agent-core@^0.80.3",
-		"@mariozechner/pi-ai": "npm:@earendil-works/pi-ai@^0.80.3",
-		"@mariozechner/pi-coding-agent": "npm:@earendil-works/pi-coding-agent@^0.80.3",
-		"@mariozechner/pi-tui": "npm:@earendil-works/pi-tui@^0.80.3",
-		"@tintinweb/pi-tasks": "^0.4.2",
-		"typebox": "^1.1.32"
-	},
-	"optionalDependencies": {
-		"@ataraxy-labs/sem": "^0.3.21"
+	"peerDependencies": {
+		"@earendil-works/pi-agent-core": "*",
+		"@earendil-works/pi-ai": "*",
+		"@earendil-works/pi-coding-agent": "*",
+		"@earendil-works/pi-tui": "*",
+		"@mariozechner/pi-agent-core": "*",
+		"@mariozechner/pi-ai": "*",
+		"@mariozechner/pi-coding-agent": "*",
+		"@mariozechner/pi-tui": "*",
+		"typebox": "*"
 	},
 	"description": "Personal collection of Pi extensions, themes, and skills.",
 	"keywords": [
@@ -23,19 +20,13 @@
 	],
 	"license": "MIT",
 	"scripts": {
-		"sem:evaluate": "node extensions/pi-sem/bin/sem-eval.mjs",
-		"eval:wf": "node wf/evals/run.mjs",
-		"test": "bun test extensions/manifest.test.ts && npm run test:footer && npm run test:pills && npm run test:pi-sem && npm run test:leader-key && npm run test:workflow-boundaries && npm run test:handoff && npm run test:worktime && npm run test:vcc && npm run test:wf",
+		"test": "bun test extensions/manifest.test.ts && npm run test:footer && npm run test:pills && npm run test:handoff && npm run test:worktime && npm run test:vcc",
 		"test:footer": "bun test extensions/custom-footer/status.test.ts",
 		"test:pills": "bun test extensions/tool-pills",
 		"test:worktime": "node --test extensions/worktime/worktime.test.mjs",
 		"test:handoff": "node --test extensions/handoff/handoff.test.mjs",
-		"test:pi-sem": "node --test extensions/pi-sem/core.test.mjs extensions/review/sem-guidance.test.mjs",
-		"test:leader-key": "bun test extensions/leader-key/workflow-actions.test.ts",
-		"test:workflow-boundaries": "node --test skills/wf-boundaries.test.mjs",
-		"typecheck": "tsc --noEmit -p tsconfig.json",
 		"test:vcc": "bun test extensions/pi-vcc/tests",
-		"test:wf": "node --test wf/wf-gate.test.mjs && bun test extensions/wf-gate/wf-gate.test.ts"
+		"typecheck": "tsc --noEmit -p tsconfig.json"
 	},
 	"pi": {
 		"extensions": [
@@ -43,30 +34,15 @@
 			"./extensions/review/review.ts",
 			"./extensions/leader-key/index.ts",
 			"./extensions/tool-pills/index.ts",
-			"./extensions/pi-sem/index.ts",
 			"./extensions/handoff/handoff.ts",
 			"./extensions/worktime/worktime.ts",
 			"./extensions/pi-vcc/index.ts",
-			"./extensions/pi-cloak/index.ts",
-			"./extensions/tool-trim/tool-trim.ts",
-			"./extensions/wf-gate/wf-gate.ts"
+			"./extensions/tool-trim/tool-trim.ts"
 		],
 		"skills": [
-			"./skills/sem",
 			"./skills/pr-review-comments",
-			"./skills/wf",
-			"./skills/wf-run",
-			"./skills/wf-impl",
-			"./skills/wf-review",
-			"./skills/wf-uat",
-			"./skills/wf-explain",
 			"./skills/pr-explain",
-			"./skills/wf-status",
-			"./skills/wf-quick",
 			"./skills/review-guards"
-		],
-		"prompts": [
-			"./prompts"
 		],
 		"themes": [
 			"./themes"
@@ -76,8 +52,5 @@
 	"devDependencies": {
 		"@types/bun": "^1.3.14",
 		"typescript": "^7.0.2"
-	},
-	"trustedDependencies": [
-		"@ataraxy-labs/sem"
-	]
+	}
 }

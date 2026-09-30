@@ -25,7 +25,6 @@ import { matchesKey, parseKey, Key } from "@mariozechner/pi-tui";
 import { runFavouriteModels } from "./favourite-models.js";
 import { OverlayFrame } from "../shared/overlay.js";
 import type { ActionItem, ActionGroup, TopLevelEntry } from "./types.js";
-import { buildWorkflowEntries } from "./workflow-actions.js";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Build top-level entries
@@ -37,7 +36,7 @@ function runCommand(ctx: ExtensionContext, command: string) {
 }
 
 export function buildEntries(
-	pi: ExtensionAPI,
+	_pi: ExtensionAPI,
 	openFavouriteModels: (ctx: ExtensionContext) => Promise<void>,
 ): TopLevelEntry[] {
 	return [
@@ -48,7 +47,6 @@ export function buildEntries(
 			description: "switch scoped model",
 			action: openFavouriteModels,
 		},
-		buildWorkflowEntries(pi),
 		{
 			type: "group",
 			group: {
